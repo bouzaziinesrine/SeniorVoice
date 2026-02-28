@@ -62,7 +62,7 @@ const SeniorVoiceApp = () => {
   // --- LOGIQUE SYNTHÈSE VOCALE (TTS) ---
   const playVoiceResponse = async (textToSay) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/text-to-speech', {
+      const response = await fetch('https://senior-voice-api.onrender.com/text-to-speech', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: textToSay }),
@@ -85,7 +85,7 @@ const SeniorVoiceApp = () => {
     formData.append('file', blob, 'audio.wav');
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/process-voice', {
+      const response = await fetch('https://senior-voice-api.onrender.com/process-voice', {
         method: 'POST',
         body: formData,
       });
