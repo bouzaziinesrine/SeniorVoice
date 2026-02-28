@@ -1,171 +1,198 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e1b4b);
-  color: #f8fafc;
-  min-height: 100vh;
+/* Variables de couleurs */
+:root {
+  --bg-dark: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --primary: #6366f1;
+  --primary-glow: rgba(99, 102, 241, 0.4);
+  --user-msg: #4338ca;
+  --ai-msg: #1e293b;
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
+  --accent-red: #ef4444;
 }
 
-.modern-container {
+/* Base Viewport */
+.app-viewport {
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-.glass-panel {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 30px;
-  padding: 40px 20px;
+/* Panneau Principal (Glassmorphism) */
+.main-card {
   width: 100%;
-  max-width: 450px;
-  text-align: center;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin: 0 0 10px 0;
-  background: linear-gradient(to right, #38bdf8, #818cf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.status {
-  font-size: 1.1rem;
-  color: #94a3b8;
-  margin-bottom: 40px;
-  min-height: 25px;
-}
-
-/* --- BOUTON MICROPHONE MODERNE --- */
-.mic-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.mic-btn {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border: none;
-  font-size: 3rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.mic-btn.recording {
-  background: linear-gradient(135deg, #ef4444, #f59e0b);
-  transform: scale(1.1);
-  animation: pulseNeon 1.5s infinite;
-}
-
-@keyframes pulseNeon {
-  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-  70% { box-shadow: 0 0 0 25px rgba(239, 68, 68, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
-}
-
-/* --- CHAT BUBBLES --- */
-.chat-section {
+  max-width: 480px;
+  height: 92vh;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  text-align: left;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  margin: 10px;
 }
 
-.message {
-  display: flex;
-  gap: 15px;
-  align-items: flex-end;
-  opacity: 0;
-  animation: slideUp 0.5s forwards ease-out;
+/* Header */
+.app-header {
+  padding: 25px;
+  text-align: center;
 }
 
-.message.ai {
-  flex-direction: row-reverse;
-}
-
-.avatar {
-  font-size: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  padding: 10px;
+.logo-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.bubble {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 15px 20px;
+.app-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  border-bottom-left-radius: 5px;
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: #e2e8f0;
-  max-width: 75%;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  transition: all 0.3s;
 }
 
-.message.ai .bubble {
-  background: linear-gradient(135deg, #38bdf822, #818cf822);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 5px;
+.status-pill.recording {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  font-weight: bold;
+}
+
+/* Zone de Messages */
+.chat-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.welcome-screen {
+  text-align: center;
+  margin-top: 60px;
+  color: var(--text-dim);
+}
+
+.welcome-icon { font-size: 4rem; margin-bottom: 20px; }
+
+.chat-row { display: flex; width: 100%; }
+.chat-row.user { justify-content: flex-end; }
+.chat-row.ai { justify-content: flex-start; }
+
+.message-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 85%;
+}
+
+.chat-row.user .message-wrapper { flex-direction: row; }
+.chat-row.ai .message-wrapper { flex-direction: row-reverse; }
+
+.message-bubble {
+  padding: 14px 18px;
+  border-radius: 22px;
+  color: white;
+  unicode-bidi: plaintext;
+  text-align: start;
+  line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.user .message-bubble {
+  background: var(--user-msg);
+  border-bottom-right-radius: 4px;
+}
+
+.ai .message-bubble {
+  background: var(--ai-msg);
+  border-bottom-left-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .intent-badge {
-  display: inline-block;
-  background: rgba(56, 189, 248, 0.2);
-  color: #38bdf8;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
+  display: block;
+  font-size: 0.65rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--primary-light);
+  margin-bottom: 4px;
+  opacity: 0.7;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Footer & Bouton Micro */
+.app-footer {
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
 }
 
-.chat-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  text-align: left;
-  /* NOUVEAU : Hauteur limitée et scroll */
-  max-height: 400px; 
-  overflow-y: auto;
-  padding-right: 10px;
+.instruction-box {
+  margin-bottom: 20px;
 }
 
-/* NOUVEAU : Personnalisation de la barre de scroll pour qu'elle soit jolie */
-.chat-section::-webkit-scrollbar {
-  width: 6px;
+.instruction-box p { color: white; margin: 0; font-weight: 500; }
+.instruction-box small { color: var(--text-dim); font-size: 0.75rem; }
+
+.mic-button-lg {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 20px var(--primary-glow);
 }
-.chat-section::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+
+.mic-button-lg.active {
+  background: var(--accent-red);
+  transform: scale(0.9);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
 }
+
+.mic-emoji { font-size: 2.2rem; z-index: 2; position: relative; }
+
+/* Animation d'onde (Pulse) */
+.pulse-effect {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  z-index: 1;
+  opacity: 0;
+}
+
+.active .pulse-effect {
+  animation: ripple 1.5s infinite;
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Scrollbar */
+.chat-container::-webkit-scrollbar { width: 5px; }
+.chat-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
