@@ -1,0 +1,107 @@
+{
+  "project": "SeniorVoice Tunisia",
+  "version": "1.0",
+  "total_records": 50,
+  "data": [
+    {
+      "category": "Santé",
+      "samples": [
+        { "id": "med_01", "raw": "Euh... choufli... rappelle-moi de prendre l'insuline à 20h.", "intent": "SET_REMINDER", "action": "Rappel insuline 20:00", "tags": ["hésitation", "mélange"] },
+        { "id": "med_02", "raw": "Ya rabbi... el dwa mta3 el sekker... waqtah ? Dis-moi demain à 8h.", "intent": "SET_REMINDER", "action": "Rappel médicament diabète demain 08:00", "tags": ["darja", "hésitation"] },
+        { "id": "med_03", "raw": "Rappelle-moi... docteur Ben Amor... el jom3a el jaya à 10h.", "intent": "SET_REMINDER", "action": "RDV Dr Ben Amor Vendredi 10:00", "tags": ["darja"] },
+        { "id": "med_04", "raw": "Euh... nsit... rappelle-moi l'infirmier lyoum à 16h.", "intent": "SET_REMINDER", "action": "RDV Infirmier aujourd'hui 16:00", "tags": ["darja", "oubli"] },
+        { "id": "med_05", "raw": "L'antibiotique... nzidouh après le dîner, fais-moi un rappel.", "intent": "SET_REMINDER", "action": "Rappel antibiotique après dîner", "tags": ["mélange"] }
+      ]
+    },
+    {
+      "category": "Lien Social",
+      "samples": [
+        { "id": "soc_01", "raw": "Appelle... chkounou... appelez Ahmed mon fils, tawwa.", "intent": "MAKE_CALL", "target": "Ahmed (Fils)", "tags": ["darja", "hésitation"] },
+        { "id": "soc_02", "raw": "Euh... nheb nkalem Fatma fil France.", "intent": "MAKE_CALL", "target": "Fatma (France)", "tags": ["darja"] },
+        { "id": "soc_03", "raw": "Appelle ma fille... lalla Myriam, s'il te plaît.", "intent": "MAKE_CALL", "target": "Myriam (Fille)", "tags": ["politesse"] },
+        { "id": "soc_04", "raw": "Oueldi Sami... appelle-le, nheb neshel 3lih.", "intent": "MAKE_CALL", "target": "Sami (Fils)", "tags": ["darja", "affection"] },
+        { "id": "soc_05", "raw": "Appelle l'opticien... choufli el noumrou.", "intent": "SEARCH_CALL", "target": "Opticien", "tags": ["darja"] }
+      ]
+    },
+    {
+      "category": "Météo",
+      "samples": [
+        { "id": "met_01", "raw": "Famma mtar lyoum fi Tounes ?", "intent": "GET_WEATHER", "location": "Tunis", "tags": ["darja"] },
+        { "id": "met_02", "raw": "Euh... el weather... lyoum s'khoun barra ?", "intent": "GET_WEATHER", "condition": "heat", "tags": ["mélange", "anglicisme"] },
+        { "id": "met_03", "raw": "Chnouwa el météo... ghodwa fi l'Ariana ?", "intent": "GET_WEATHER", "location": "Ariana", "time": "demain", "tags": ["darja"] },
+        { "id": "met_04", "raw": "Est-ce que... famma rih lyoum fil 3achia ?", "intent": "GET_WEATHER", "condition": "vent", "tags": ["darja"] },
+        { "id": "met_05", "raw": "El taqs... behi pour sortir ou non ?", "intent": "GET_WEATHER", "context": "conseil", "tags": ["darja"] }
+      ]
+    },
+    {
+      "category": "Urgence",
+      "samples": [
+        { "id": "emg_01", "raw": "Je ne me sens pas bien... aide-moi... appelle mon fils.", "intent": "EMERGENCY", "action": "Appel Fils", "tags": ["critique"] },
+        { "id": "emg_02", "raw": "Euh... rasi yoja3... appelle l'ambulance.", "intent": "EMERGENCY", "action": "Appel Ambulance", "tags": ["darja", "douleur"] },
+        { "id": "emg_03", "raw": "Je suis tombé... mouch qader naqef... appelle à l'aide.", "intent": "EMERGENCY", "action": "Alerte Chute", "tags": ["darja", "chute"] },
+        { "id": "emg_04", "raw": "Ya rabbi... el sdar touja3... appelle le docteur vite.", "intent": "EMERGENCY", "action": "Appel Docteur", "tags": ["darja", "critique"] },
+        { "id": "emg_05", "raw": "Appelle les secours... tawwa tawwa !", "intent": "EMERGENCY", "action": "Appel Secours", "tags": ["darja", "urgence"] }
+      ]
+    },
+    {
+      "category": "Religion",
+      "samples": [
+        { "id": "rel_01", "raw": "Waqtech el Maghreb lyoum ?", "intent": "PRAYER_TIME", "prayer": "Maghreb", "tags": ["darja"] },
+        { "id": "rel_02", "raw": "Euh... el adhan... mta3 el Sobh, waqtah ?", "intent": "PRAYER_TIME", "prayer": "Sobh", "tags": ["darja"] },
+        { "id": "rel_03", "raw": "Dis-moi... waqtech Salat el Jomaa lyoum ?", "intent": "PRAYER_TIME", "prayer": "Jomaa", "tags": ["darja"] },
+        { "id": "rel_04", "raw": "Ramadan... qadeh lyoum fil ch'har ?", "intent": "CALENDAR_INFO", "context": "Ramadan", "tags": ["darja"] },
+        { "id": "rel_05", "raw": "Euh... el qebla... mnin ?", "intent": "QIBLA_DIRECTION", "tags": ["darja"] }
+      ]
+    },
+    {
+      "category": "Courses",
+      "samples": [
+        { "id": "shp_01", "raw": "Nzidou hlib... fil lita, nsitou.", "intent": "SHOPPING_LIST", "item": "lait", "tags": ["darja", "oubli"] },
+        { "id": "shp_02", "raw": "Euh... ktebtchi khobz et jben ?", "intent": "SHOPPING_CHECK", "items": ["pain", "fromage"], "tags": ["darja"] },
+        { "id": "shp_03", "raw": "Ajoute... tomates... et... chnouwa ekher... l'huile.", "intent": "SHOPPING_LIST", "items": ["tomates", "huile"], "tags": ["hésitation"] },
+        { "id": "shp_04", "raw": "Mets dans la liste... dwa mta3 el rasi.", "intent": "SHOPPING_LIST", "item": "médicament tête", "tags": ["darja"] },
+        { "id": "shp_05", "raw": "Nheb nechri brika et s'kar.", "intent": "SHOPPING_LIST", "items": ["brique", "sucre"], "tags": ["darja"] }
+      ]
+    },
+    {
+      "category": "Infos Pratiques",
+      "samples": [
+        { "id": "inf_01", "raw": "C'est quoi... euh... le numéro de la pharmacie de garde ?", "intent": "INFO_QUERY", "target": "pharmacie de garde", "tags": ["hésitation"] },
+        { "id": "inf_02", "raw": "Winou le centre de santé le plus proche ?", "intent": "INFO_QUERY", "target": "centre de santé", "tags": ["darja"] },
+        { "id": "inf_03", "raw": "Dis-moi... el banka... waqtech t'sakker ?", "intent": "INFO_QUERY", "target": "banque", "query": "horaire", "tags": ["darja"] },
+        { "id": "inf_04", "raw": "Euh... taxi... kifah n'kalem un taxi ?", "intent": "INFO_QUERY", "target": "service taxi", "tags": ["mélange"] },
+        { "id": "inf_05", "raw": "Chnouwa el date lyoum... mta3 el ch'har ?", "intent": "GET_DATE", "tags": ["darja"] }
+      ]
+    },
+    {
+      "category": "Divertissement",
+      "samples": [
+        { "id": "ent_01", "raw": "Mets-moi... chwaya Om Kalthoum, s'il te plaît.", "intent": "PLAY_AUDIO", "artist": "Om Kalthoum", "tags": ["politesse"] },
+        { "id": "ent_02", "raw": "Euh... el radio... haleb Radio Nationale.", "intent": "PLAY_RADIO", "station": "Radio Nationale", "tags": ["darja"] },
+        { "id": "ent_03", "raw": "Nheb nesma3... Mezoued... n'importe quoi.", "intent": "PLAY_AUDIO", "genre": "Mezoued", "tags": ["darja"] },
+        { "id": "ent_04", "raw": "Cherche-moi... Lotfi Bouchnak... l'une de ses chansons.", "intent": "PLAY_AUDIO", "artist": "Lotfi Bouchnak", "tags": ["mélange"] },
+        { "id": "ent_05", "raw": "Hattli quran... Sourat el Baqara.", "intent": "PLAY_AUDIO", "content": "Quran Sourat el Baqara", "tags": ["darja"] }
+      ]
+    },
+    {
+      "category": "Domotique",
+      "samples": [
+        { "id": "dom_01", "raw": "Tafi el dhaw... mta3 el coujina.", "intent": "SMART_HOME", "action": "Éteindre", "device": "Lumière Cuisine", "tags": ["darja"] },
+        { "id": "dom_02", "raw": "Euh... el climatiseur... tafiou, bared el taqs.", "intent": "SMART_HOME", "action": "Éteindre", "device": "Climatiseur", "tags": ["darja"] },
+        { "id": "dom_03", "raw": "Haleb la télé... sur Al Wataniya.", "intent": "SMART_HOME", "action": "Allumer", "device": "Télévision", "channel": "Al Wataniya", "tags": ["darja"] },
+        { "id": "dom_04", "raw": "Euh... sakker el beb mta3 el jarda.", "intent": "SMART_HOME", "action": "Fermer", "device": "Porte jardin", "tags": ["darja"] },
+        { "id": "dom_05", "raw": "El chauffage... nqas fih chwaya.", "intent": "SMART_HOME", "action": "Baisser", "device": "Chauffage", "tags": ["darja"] }
+      ]
+    },
+    {
+      "category": "Confirmation",
+      "samples": [
+        { "id": "cnf_01", "raw": "Lé lé... mouch tawwa... ba3d chwaya.", "intent": "POSTPONE", "tags": ["darja", "négation"] },
+        { "id": "cnf_02", "raw": "Oui... c'est ça... parfait.", "intent": "CONFIRM", "tags": ["validation"] },
+        { "id": "cnf_03", "raw": "Euh... annuler... nsit, mouch lezem.", "intent": "CANCEL", "tags": ["darja", "oubli"] },
+        { "id": "cnf_04", "raw": "C'est bon... aywah... mshé.", "intent": "CONFIRM", "tags": ["darja"] },
+        { "id": "cnf_05", "raw": "Non... mouch l'infirmier... appelle mon petit-fils.", "intent": "CORRECTION", "new_action": "Appel petit-fils", "tags": ["darja", "négation"] }
+      ]
+    }
+  ]
+}

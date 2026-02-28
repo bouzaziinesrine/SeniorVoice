@@ -1,0 +1,13 @@
+# Fichiers de configuration et clés API
+.env
+
+# Dossiers lourds Node.js (Frontend)
+node_modules/
+build/
+dist/
+
+# Dossiers lourds Python (Backend)
+__pycache__/
+venv/
+env/
+.pytest_cache/
