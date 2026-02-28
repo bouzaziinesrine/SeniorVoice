@@ -5,6 +5,8 @@ from groq import Groq
 from openai import OpenAI
 import os
 import json 
+import io
+from gtts import gTTS
 from dotenv import load_dotenv
 import uuid
 
@@ -147,22 +149,14 @@ async def text_to_speech(background_tasks: BackgroundTasks, data: dict = Body(..
     speech_file_path = f"response_{uuid.uuid4()}.mp3"
     
     try:
-        print(f"Génération de l'audio pour : {text}") # Log de contrôle
-        from gtts import gTTS
+        # Création de l'audio en mémoire
+        tts = gTTS(text=text, lang='fr') # 'fr' ou 'ar' selon ta préférence pour le mix
+        mp3_fp = io.BytesIO()
+        tts.write_to_fp(mp3_fp)
+        mp3_fp.seek(0) # Revenir au début du fichier virtuel
         
-        # On génère l'audio
-        tts = gTTS(text=text, lang='ar') # 'ar' fonctionne bien pour le Tunisien
-        tts.save(speech_file_path)
-        
-        # Vérification si le fichier a bien été créé
-        if os.path.exists(speech_file_path):
-            print(f"Fichier créé avec succès : {speech_file_path}")
-            # On ne supprime PAS tout de suite pour tester
-            # background_tasks.add_task(os.remove, speech_file_path)
-            return FileResponse(speech_file_path, media_type="audio/mpeg")
-        else:
-            print("Erreur : Le fichier n'a pas été généré.")
-            return {"error": "Fichier non généré"}
+        # On renvoie le flux audio directement sans enregistrer de fichier .mp3
+        return StreamingResponse(mp3_fp, media_type="audio/mpeg")
             
     except Exception as e:
         print(f"Erreur TTS détaillée : {str(e)}")
