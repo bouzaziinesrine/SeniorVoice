@@ -5,7 +5,7 @@ const SeniorVoiceApp = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [status, setStatus] = useState('Prêt à vous aider');
   const [messages, setMessages] = useState([]); 
-  
+  const API_BASE_URL = "https://senior-voice-api.onrender.com";
   const mediaRecorder = useRef(null);
   const audioChunks = useRef([]);
   const chatEndRef = useRef(null);
