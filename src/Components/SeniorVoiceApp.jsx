@@ -61,23 +61,27 @@ const SeniorVoiceApp = () => {
 
   // --- LOGIQUE SYNTHÈSE VOCALE (TTS) ---
   const playVoiceResponse = async (textToSay) => {
-    try {
-      const response = await fetch('https://senior-voice-api.onrender.com/text-to-speech', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: textToSay }),
-      });
+  try {
+    const response = await fetch(`${API_BASE_URL}/text-to-speech`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: textToSay }),
+    });
 
-      if (!response.ok) throw new Error("Erreur TTS");
+    if (!response.ok) throw new Error("Erreur serveur TTS");
 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const audio = new Audio(url);
-      await audio.play();
-    } catch (err) {
-      console.error("Erreur lecture voix:", err);
-    }
-  };
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    
+    // On attend que l'audio soit chargé avant de jouer
+    audio.oncanplaythrough = () => {
+      audio.play().catch(e => console.error("Erreur autoplay:", e));
+    };
+  } catch (err) {
+    console.error("Détails de l'erreur voix:", err);
+  }
+};
 
   // --- LOGIQUE BACKEND ---
   const sendToBackend = async (blob) => {
